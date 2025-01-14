@@ -1,4 +1,4 @@
-use ws24;
+use ws24; --change this name to the database name on deployment
 
 
 drop table if exists order_details;
