@@ -50,4 +50,8 @@ public class Queries {
                 ?, ?, ?, ?, ?
                 )
             """;
+
+        public final static String SQL_GET_ALL_FROM_ORDERS = """
+                        select * from orders
+                        """;
 }

@@ -2,6 +2,7 @@ package vttp.paf.workshop24.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,11 @@ public class OrderRestController {
 
         boolean orderCreated = orderService.createOrderEntry(jsonInput);
         return ResponseEntity.ok().body(orderCreated);
+    }
 
+    @GetMapping("/test")
+    public ResponseEntity<Boolean> test(){
+        boolean x = orderService.test();
+        return ResponseEntity.ok().body(x);
     }
 }

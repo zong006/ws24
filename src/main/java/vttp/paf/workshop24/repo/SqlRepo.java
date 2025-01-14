@@ -25,6 +25,11 @@ public class SqlRepo {
     @Autowired
     private JdbcTemplate template;
 
+    public boolean test(){
+        int x = template.update(Queries.SQL_GET_ALL_FROM_ORDERS);
+        return x>0;
+    }
+
     public boolean accountExists(int id){
 
         try {

@@ -25,6 +25,10 @@ public class OrderService {
     @Autowired
     SqlRepo sqlRepo;
 
+    public boolean test(){
+        return sqlRepo.test();
+    }
+
     @Transactional
     public boolean createOrderEntry(String jsonString){
 
