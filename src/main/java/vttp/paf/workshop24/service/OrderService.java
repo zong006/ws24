@@ -25,7 +25,7 @@ public class OrderService {
     @Autowired
     SqlRepo sqlRepo;
 
-    public boolean test(){
+    public String test(){
         return sqlRepo.test();
     }
 

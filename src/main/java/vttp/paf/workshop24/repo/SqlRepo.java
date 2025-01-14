@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import vttp.paf.workshop24.exception.AccountNotFoundException;
@@ -25,9 +26,15 @@ public class SqlRepo {
     @Autowired
     private JdbcTemplate template;
 
-    public boolean test(){
-        int x = template.update(Queries.SQL_GET_ALL_FROM_ORDERS);
-        return x>0;
+    public String test(){
+
+        SqlRowSet rs = template.queryForRowSet(Queries.SQL_GET_ALL_FROM_ORDERS);
+        String x = "";
+        while (rs.next()){
+            x += rs.getString("customer_name");
+        }
+        
+        return x;
     }
 
     public boolean accountExists(int id){

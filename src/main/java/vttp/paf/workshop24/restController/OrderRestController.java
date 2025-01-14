@@ -23,8 +23,8 @@ public class OrderRestController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity<Boolean> test(){
-        boolean x = orderService.test();
+    public ResponseEntity<String> test(){
+        String x = orderService.test();
         return ResponseEntity.ok().body(x);
     }
 }
