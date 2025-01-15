@@ -1,4 +1,4 @@
-use ws24; --change this name to the database name on deployment
+use ws24; -- change this name to the database name on deployment
 
 
 drop table if exists order_details;
@@ -15,11 +15,12 @@ create table orders (
 );
 
 create table order_details (
-    id int not null,
+    id int not null auto_increment,
+    order_id int not null,
     product varchar(64),
     unit_price decimal (3,2),
     discount decimal (2,2),
     quantity int,
-    constraint pk_order_details_product primary key (product),
-    constraint pk_orders_id foreign key (id) references orders(order_id)
+    constraint pk_order_details primary key (id),
+    constraint fk_orders_id foreign key (order_id) references orders(order_id) ON DELETE CASCADE
 );

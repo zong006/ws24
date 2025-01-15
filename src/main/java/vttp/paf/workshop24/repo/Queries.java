@@ -44,7 +44,7 @@ public class Queries {
 
     public final static String SQL_ENTER_ORDER_DETAILS = """
             insert into order_details (
-                id, product, unit_price, discount, quantity
+                order_id, product, unit_price, discount, quantity
                 )
             values (
                 ?, ?, ?, ?, ?

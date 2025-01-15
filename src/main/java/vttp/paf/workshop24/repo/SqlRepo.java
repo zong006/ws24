@@ -65,7 +65,7 @@ public class SqlRepo {
         int accountUpdated = template.update(Queries.SQL_UPDATE_ACCOUNT, bankAccount.getBalance(), bankAccount.getId());
         return (accountUpdated>0)? true:false;
     }
-
+// ==================================================  ws24  ========================================================== //
     public int createOrder(Order order){
         /*
         table cols are: order_id (pk), order_date, customer_name, ship_address, notes, tax
@@ -94,8 +94,9 @@ public class SqlRepo {
 
     public boolean createOrderDetails(Order order){
         /*
-        table cols are : order_id (fk), product (pk), unit_price, discount, quantity
+        table cols are : id (pk), order_id (fk), product, unit_price, discount, quantity
         */ 
+
         Map<Product, Integer> orderList = order.getOrderItems();
         int updatedRows = 0;
         for (Map.Entry<Product, Integer> entry : orderList.entrySet()){
@@ -110,12 +111,4 @@ public class SqlRepo {
         }
         return orderList.size() == updatedRows;  
     }
-
-
-    
-
-  
-  
-
-
 }

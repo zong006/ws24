@@ -1,6 +1,6 @@
 #### Notes
 
-to update two tables in a database connected by foreign keys simultaneously via a transaction (further improvements to tables in the future..)
+to update two tables in a database connected by foreign keys simultaneously via a transaction 
 
 1. Use keyholder and prepared statements in the repo class.
     - the id of orders table (primary key) is set to auto_increment. Table cols are: 

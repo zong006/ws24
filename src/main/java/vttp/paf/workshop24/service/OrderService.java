@@ -34,10 +34,10 @@ public class OrderService {
 
         boolean entryCreated = false;
         Order order = parseOrderEntry(jsonString);
-        int createdOrderId = sqlRepo.createOrder(order);
-        order.setId(createdOrderId);
-
+        
         try {
+            int createdOrderId = sqlRepo.createOrder(order);
+            order.setId(createdOrderId);
             sqlRepo.createOrderDetails(order);
             entryCreated = true;
             return entryCreated;
@@ -48,13 +48,12 @@ public class OrderService {
         }
     }
 
-
     private Order parseOrderEntry(String jsonString){
         Order o = new Order();
         JsonObject jsonData = generateJson(jsonString);
         o.setCustomerName(jsonData.getString("customerName"));
         o.setNotes(jsonData.getString("notes"));
-        o.setTax(jsonData.getJsonNumber("tax").longValue());
+        o.setTax((float)jsonData.getJsonNumber("tax").doubleValue());
         o.setShipAddress(jsonData.getString("shipAddress"));
         Date dtn = new Date();
         o.setOrderDate(new java.sql.Date(dtn.getTime()));
@@ -65,8 +64,8 @@ public class OrderService {
             Product p = new Product();
             JsonObject item = itemList.getJsonObject(i);
             p.setName(item.getString("name"));
-            p.setPrice(item.getJsonNumber("price").longValue());
-            p.setDiscount(item.getJsonNumber("discount").longValue());
+            p.setPrice((float) item.getJsonNumber("price").doubleValue());
+            p.setDiscount((float) item.getJsonNumber("discount").doubleValue());
             orderList.putIfAbsent(p, item.getInt("quantity"));
         }
         o.setOrderItems(orderList);
